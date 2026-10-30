@@ -1,0 +1,14 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "moyou_catalog_tools",
+  "name_for_human": "魔柚商品工具",
+  "description_for_model": "查询当前商家的真实商品资料并保存待检查的搭配方案。工具在业务服务端按当前商家身份执行。",
+  "description_for_human": "查询本店商品、读取商品资料和准备搭配方案。",
+  "auth": { "type": "none", "service_token": "", "sub_type": "", "payload": "" },
+  "logo_url": "plugin_icon/default_icon.png",
+  "api": { "type": "localplugin", "url": "http://localhost:4317/openapi.yaml" },
+  "common_params": { "body": [], "header": [], "path": [], "query": [] },
+  "select_mode": null,
+  "api_extend": null,
+  "description_for_claude3": ""
+}

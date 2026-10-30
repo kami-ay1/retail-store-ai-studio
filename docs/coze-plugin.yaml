@@ -1,0 +1,121 @@
+openapi: 3.0.1
+info:
+  title: 魔柚商品工具
+  description: 在当前商家的业务服务中查询真实商品并准备待检查的搭配方案。
+  version: v1
+paths:
+  /search_products:
+    post:
+      operationId: search_products
+      x-functionName: search_products
+      summary: 按自然语言要求检索本店商品，并使用品类和库存条件过滤
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [query]
+              properties:
+                query: { type: string, description: 商品用途、风格、材质或名称的自然语言要求，可为空字符串以浏览商品 }
+                category: { type: string, description: 可选的精确品类名称 }
+                inStock: { type: boolean, default: true, description: 是否只查询有库存的商品 }
+                limit: { type: integer, minimum: 1, maximum: 12, default: 8 }
+      responses:
+        "200":
+          description: 当前商家实际商品列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string }
+                        version: { type: integer }
+                        sku: { type: string }
+                        name: { type: string }
+                        category: { type: string }
+                        color: { type: string }
+                        material: { type: string }
+                        stock: { type: integer }
+                        priceCents: { type: integer }
+                        description: { type: string }
+  /get_product:
+    post:
+      operationId: get_product
+      x-functionName: get_product
+      summary: 读取当前店铺单件商品的完整资料和最新版本
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [productId]
+              properties:
+                productId: { type: string, description: search_products 返回的商品 ID }
+      responses:
+        "200":
+          description: 实际商品资料
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    type: object
+                    properties:
+                      id: { type: string }
+                      version: { type: integer }
+                      sku: { type: string }
+                      name: { type: string }
+                      category: { type: string }
+                      color: { type: string }
+                      material: { type: string }
+                      stock: { type: integer }
+                      priceCents: { type: integer }
+                      description: { type: string }
+  /propose_outfit:
+    post:
+      operationId: propose_outfit
+      x-functionName: propose_outfit
+      summary: 保存一份搭配方案供商家检查，不执行图片生成
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [productId, productVersion, title, scene, style, instructions, rationale]
+              properties:
+                productId: { type: string, description: get_product 返回的实际商品 ID }
+                productVersion: { type: integer, description: get_product 返回的最新商品版本 }
+                title: { type: string, description: 简洁的搭配方案名称 }
+                scene: { type: string, description: 具体拍摄场景 }
+                style: { type: string, description: 视觉风格 }
+                instructions: { type: string, description: 商品细节和画面要求，没有时传空字符串 }
+                rationale: { type: string, description: 基于实际商品资料的方案依据 }
+      responses:
+        "200":
+          description: 已保存的方案，等待商家采纳
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requiresMerchantReview: { type: boolean }
+                  plan:
+                    type: object
+                    properties:
+                      id: { type: string }
+                      title: { type: string }
+                      productId: { type: string }
+                      productVersion: { type: integer }
+                      scene: { type: string }
+                      style: { type: string }
+                      instructions: { type: string }
+                      rationale: { type: string }

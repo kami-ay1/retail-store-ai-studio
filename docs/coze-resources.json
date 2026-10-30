@@ -1,0 +1,23 @@
+{
+  "workspaceId": "7701684097798045711",
+  "workflow": {
+    "id": "7701694522154532927",
+    "name": "moyou_outfit_image",
+    "status": "draft",
+    "url": "https://www.coze.cn/work_flow?workflow_id=7701694522154532927&space_id=7701684097798045711"
+  },
+  "agent": {
+    "id": "7701737599639470106",
+    "name": "魔柚搭配策划",
+    "status": "draft",
+    "url": "https://www.coze.cn/space/7701684097798045711/bot/7701737599639470106"
+  },
+  "plugin": {
+    "id": "7701735960530370600",
+    "name": "魔柚商品工具",
+    "status": "published",
+    "version": "v0.0.1",
+    "url": "https://www.coze.cn/space/7701684097798045711/plugin/7701735960530370600"
+  },
+  "apiPublication": "deferred_by_user"
+}
