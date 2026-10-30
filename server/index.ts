@@ -13,7 +13,7 @@ const server = app.listen(config.PORT, '127.0.0.1', () => {
   database.prepare("UPDATE agentRuns SET status='interrupted' WHERE status='running'").run()
   worker.start()
   void productSearch.start().then(undefined, (error: unknown) => { console.error('商品检索服务启动失败', error) })
-  console.log(`魔柚商家服务：http://127.0.0.1:${config.PORT}`)
+  console.log(`店搭 AI 门店服务：http://127.0.0.1:${config.PORT}`)
 })
 server.on('error', error => { throw error })
 process.once('SIGTERM', () => { worker.stop(); void productSearch.stop(); server.close() })

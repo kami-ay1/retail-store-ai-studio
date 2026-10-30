@@ -35,7 +35,7 @@ async function generate() {
 </script>
 
 <template>
-  <section class="studio-hero"><div><div class="eyebrow">THE CREATIVE STUDIO</div><h1>让商品，拥有新的表达<span>。</span></h1><p>连接商品资料与创作灵感，生成属于店铺的搭配图。</p></div><span class="edition-label">MOYOU<br />STUDIO / 01</span></section>
+  <section class="studio-hero"><div><div class="eyebrow">MADE FOR RETAIL STORES</div><h1>让门店好货，更好地被看见<span>。</span></h1><p>围绕在售商品与实际库存，为门店上新、导购推荐和社群营销准备搭配图片。</p></div><span class="edition-label">DIANDA<br />STORE / 01</span></section>
   <div class="studio-layout">
     <section class="creation-panel">
       <div class="section-label"><span><i class="step-index">01</i>选择创作素材</span><span class="micro-label">SOURCE MATERIALS</span></div>
@@ -55,7 +55,7 @@ async function generate() {
       <div class="preview-canvas" :class="{ 'has-image': task?.status === 'succeeded' }">
         <img v-if="task?.status === 'succeeded' && task.resultAssetIds[0]" :src="assetUrl(task.resultAssetIds[0])" :alt="`${task.product.name}的搭配图`" />
         <div v-else-if="task" class="canvas-state"><LoaderCircle v-if="task.status === 'queued' || task.status === 'running'" class="spin" :size="32" :stroke-width="1" /><ScanLine v-else :size="32" :stroke-width="1" /><span class="eyebrow">{{ statusLabels[task.status] }}</span><p>{{ task.error || '生成完成后，图片会保存在创作记录中。' }}</p></div>
-        <div v-else class="canvas-state"><div class="canvas-mark">M</div><span class="eyebrow">IMAGINE THE POSSIBILITIES</span><p>两张图片，一种新的表达。<br />你的第一张搭配图，从这里开始。</p></div>
+        <div v-else class="canvas-state"><div class="canvas-mark">D</div><span class="eyebrow">IMAGINE THE POSSIBILITIES</span><p>两张图片，一种新的表达。<br />你的第一张搭配图，从这里开始。</p></div>
         <span class="canvas-corner top-left"></span><span class="canvas-corner bottom-right"></span>
       </div>
       <div class="preview-footer"><div><span>{{ task ? task.product.name : '留白，等待灵感' }}</span><small>{{ task ? new Date(task.createdAt).toLocaleString('zh-CN') : '真实生成结果将在这里展示' }}</small></div><div v-if="task" class="preview-actions"><button class="icon-button" aria-label="查看生成资料与提示词" @click="showPrompt = true"><FileText :size="17" /></button><a v-if="task.resultAssetIds[0]" class="icon-button" aria-label="下载生成图片" :href="`${assetUrl(task.resultAssetIds[0])}?download=1`" download><ArrowDownToLine :size="17" /></a></div></div>

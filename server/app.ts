@@ -51,7 +51,7 @@ export function createApp(database: DatabaseSync, directory: string, productSear
   app.post('/api/products/search-index/retry', async (_request, response) => { response.status(202).json(await productSearch.retry(response.locals.merchant.merchantId)) })
   app.post('/api/products/search', async (request, response) => { response.json(await productSearch.search(response.locals.merchant.merchantId, request.body)) })
   app.get('/api/products/template', (_request, response) => {
-    response.type('text/csv; charset=utf-8').attachment('moyou-products.csv').send('\ufeffsku,name,category,color,material,priceCents,stock,description\r\n')
+    response.type('text/csv; charset=utf-8').attachment('dianda-products.csv').send('\ufeffsku,name,category,color,material,priceCents,stock,description\r\n')
   })
   const csvUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 2 * 1024 * 1024, files: 1 } })
   app.post('/api/products/import', csvUpload.single('file'), (request, response) => {
@@ -70,7 +70,7 @@ export function createApp(database: DatabaseSync, directory: string, productSear
   app.get('/api/assets/:id/content', (request, response) => {
     const asset = getAsset(database, response.locals.merchant.merchantId, z.uuid().parse(request.params.id))
     response.type(asset.mime)
-    if (request.query.download === '1') response.attachment(`moyou-${asset.id}.${asset.mime.split('/')[1]}`)
+    if (request.query.download === '1') response.attachment(`dianda-${asset.id}.${asset.mime.split('/')[1]}`)
     response.sendFile(resolve(directory, 'uploads', asset.filename))
   })
   app.get('/api/generations', (_request, response) => { response.json(listGenerations(database, response.locals.merchant.merchantId)) })

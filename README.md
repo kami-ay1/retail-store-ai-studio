@@ -1,6 +1,8 @@
-# 魔柚商家创作工作台
+# 店搭 AI · 线下零售门店创作平台
 
-使用 Vue 3、Node.js、Coze 和 Qdrant，提供商家商品管理、语义选品、搭配策划及图片创作工作台。商品语义检索已完成本机联调，Coze 生图工作流与 Agent 当前保留草稿。
+面向线下服饰零售门店，围绕在售商品与实际库存，提供语义选品、搭配策划和营销图片创作，支持门店上新、导购推荐及社群营销素材准备。使用 Vue 3、Node.js、Coze 和 Qdrant，商品语义检索已完成本机联调，Coze 生图工作流与 Agent 当前保留草稿。
+
+GitHub 仓库：<https://github.com/kami-ay1/retail-store-ai-studio>。
 
 ![商品语义检索](docs/qdrant-search-preview.png)
 

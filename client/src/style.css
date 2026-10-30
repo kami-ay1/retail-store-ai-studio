@@ -33,7 +33,7 @@ code { font: 12px 'Consolas', monospace; background: #eeeee8; padding: 2px 4px; 
 .micro-label { color: #9b9d93; font-size: 8px; }
 .muted { color: #85887e; font-size: 12px; line-height: 1.9; }
 .wordmark { display: flex; align-items: baseline; gap: 10px; font: 600 26px 'Georgia', serif; letter-spacing: -.06em; color: #303827; }
-.wordmark > span { font: 500 15px 'Noto Serif SC', 'SimSun', serif; letter-spacing: .09em; }
+.wordmark > span { font: 500 15px 'Noto Serif SC', 'SimSun', serif; letter-spacing: .09em; white-space: nowrap; }
 .wordmark.light { color: #f1f0dd; }
 .app-shell { display: flex; min-height: 100vh; }
 .sidebar { width: 216px; flex: 0 0 216px; background: #eeeee6; border-right: 1px solid #e2e3d9; padding: 30px 18px 22px; display: flex; flex-direction: column; position: fixed; inset: 0 auto 0 0; z-index: 20; }
